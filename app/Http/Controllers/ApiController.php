@@ -26,9 +26,7 @@ class ApiController extends Controller
 
     public function getstudent(){
 
-        $students = [
-            "taiwo", "kehinde"
-        ];
+        $students = Studentmodel::all();
 
         return response()->json($students);
 
