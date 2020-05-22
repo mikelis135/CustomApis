@@ -14,9 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-Route::post('/student', 'ApiController@create');
-Route::get('/getstudent', 'ApiController@getStudent');
+    Route::get('/getstudents', 'ApiController@getStudent')->middleware('client');
+    Route::post('/createstudent', 'ApiController@create');
+    Route::get('/student/{id}', 'ApiController@getStudentById')->middleware('client');
+    Route::get('/deletestudent/{id}', 'ApiController@deleteStudentById')->middleware('client');
+    Route::put('/updatestudent', 'ApiController@updateStudentById')->middleware('client');
+    Route::post('/register', 'Api\AuthController@register')->middleware('client');;
+    Route::post('/login', 'Api\AuthController@login');
+
